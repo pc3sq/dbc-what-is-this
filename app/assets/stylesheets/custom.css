@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+ol.thumb-grid li {
+  float: left;
+  /*width: 15%;*/
+  margin: 0 5% 5% 0;
+  }
+ol.thumb-grid li:nth-child(5n) {
+  margin-right: 0;
+  }
+ol.thumb-grid li a img {
+  width: 100%;
+  }
