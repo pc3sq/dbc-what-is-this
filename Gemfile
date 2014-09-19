@@ -45,3 +45,4 @@ gem 'puma'
 gem 'faker'
 
 gem 'rake', group: :test
+gem 'rspec-rails', :group => [:development, :test]
