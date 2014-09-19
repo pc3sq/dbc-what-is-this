@@ -16,24 +16,30 @@ photo_urls = [
 ]
 
 11.times do |index|
-  User.create(
-              seedfile['users']['name'][index],
-              seedfile['users']['email'][index],
-              seedfile['users']['password'][index],
-              )
+  User.create({
+                name: seedfile['users']['name'][index],
+                email: seedfile['users']['email'][index],
+                password: seedfile['users']['password'][index],
+                })
 end
 
 10.times do |index|
-   Question.create(
-                  seedfile['questions']['title'][index],
-                  seedfile['questions']['caption'][index],
-                  'image_path' => photo_urls[index],
-                  )
+    users = User.all
+    question = Question.create({
+                  title: seedfile['questions']['title'][index],
+                  caption: seedfile['questions']['caption'][index],
+                  image_path: photo_urls[index],
+                  user: User.all.sample,
+                  })
 
-    Response.create(
-              seedfile['responses']['content'][index],
-              )
-    Comment.create(
-              seedfile['comments']['body'][index],
-              )
+    response = Response.create({
+              content: seedfile['responses']['content'][index],
+              user: users[index],
+              question: question,
+              })
+    Comment.create({
+              body: seedfile['comments']['body'][index],
+              user: users[index+1],
+              response: response,
+              })
 end
