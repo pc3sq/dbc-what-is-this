@@ -1,6 +1,7 @@
 require 'yaml'
 
-seedfile = YAML.load(File.read('seed.yml'))
+seedfile = YAML.load(File.read('db/seed.yml'))
+
 photo_urls = [
   "http://zippy.gfycat.com/CorruptReasonableAchillestang.gif",
   "http://i.imgur.com/cDakD23.gif",
