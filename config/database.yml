@@ -9,7 +9,7 @@ development:
 test: &TEST
   adapter: postgresql
   encoding: utf8
-  database: wasistdas_test
+  database: travis_ci_test
   pool: 5
   username:
   password:
