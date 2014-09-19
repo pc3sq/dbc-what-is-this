@@ -2,13 +2,22 @@
   margin-top: 40px;
 }
 
-header {
+header.page-header, header.question-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
-header p {
+header.page-header p {
 
+}
+
+header.question-header p {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+header.question-header img {
+  box-shadow: 1px 1px 5px #777;
 }
 
 h1 {
@@ -26,7 +35,8 @@ ol.thumb-grid li {
   margin: 10px 10px;
 }
 ol.thumb-grid li a img {
-  width: 100%;
+  width: 150px;
+  box-shadow: 1px 1px 5px #777;
 }
 
 footer {

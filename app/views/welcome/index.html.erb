@@ -1,4 +1,4 @@
-<header class="col-12">
+<header class="page-header col-12">
   <h1>Was Ist Das?</h1>
   <p>Select images to respond and comment.</p>
 </header>
@@ -6,7 +6,11 @@
 <div class="col-12">
   <ol class="thumb-grid group clearfix">
     <% 30.times do %>
-      <li><a href="#"><img src="http://placehold.it/150x150"></a></li>
+      <li>
+        <%= link_to("/welcome/question") do %>
+          <img src="http://images5.fanpop.com/image/photos/29600000/Hamster-weight-Lifting-hamsters-29682128-450-307.jpg" class="rounded">
+        <% end %>
+      </li>
     <% end %>
   </ol>
 </div>
