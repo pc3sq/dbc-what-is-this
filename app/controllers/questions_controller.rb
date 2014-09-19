@@ -16,15 +16,15 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @question, notice: 'Post was successfully created.'
     else
       render :new, notice: 'Post failed to create, try again.'
     end
   end
 
   def update
-    if @question.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+    if @question.update(question_params)
+      redirect_to @question, notice: 'Post was successfully updated.'
     else
       render :edit, notice: 'Post failed to update, try again.'
     end
@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:id])
   end
 
-  def post_params
+  def question_params
     params.require(:question).permit(:title,:caption,:image_path)
   end
 
