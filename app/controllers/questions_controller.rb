@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
-    @question = Question.all
+    @questions = Question.all
   end
 
   def show
@@ -13,15 +13,27 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.create(question_params)
+    @question = Question.new(question_params)
+
+    if @question.save
+      redirect_to @post, notice: 'Post was successfully created.'
+    else
+      render :new, notice: 'Post failed to create, try again.'
+    end
   end
 
   def update
-    @question.update(post_params)
+    if @question.update(post_params)
+      redirect_to @post, notice: 'Post was successfully updated.'
+    else
+      render :edit, notice: 'Post failed to update, try again.'
+    end
   end
 
   def destroy
     @question.destroy
+
+    redirect_to questions_url, notice: 'Post was successfully destroyed.'
   end
 
   private
