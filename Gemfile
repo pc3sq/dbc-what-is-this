@@ -43,3 +43,5 @@ gem 'puma'
 # gem 'debugger', group: [:development, :test]
 
 gem 'faker'
+
+gem 'rake', group: :test
