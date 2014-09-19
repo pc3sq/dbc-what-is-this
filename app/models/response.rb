@@ -4,4 +4,6 @@ class Response < ActiveRecord::Base
   has_many :comments
   has_many :votes
 
+  validates :content, presence: true
+
 end
