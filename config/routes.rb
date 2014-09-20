@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get '/login' => 'sessions#new', as: 'login'
   post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy', as: 'logout'
+  delete '/logout' => 'sessions#destroy', as: 'logout'
+
+  resources :oauths, only: [:create]
+  get '/google_login' => 'oauths#new', as: 'google_login'
+  get '/callback' => 'oauths#callback'
 
   root 'questions#index'
 
@@ -13,6 +17,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:create, :update, :show, :destroy]
+  resources :users, only: [ :update, :show, :destroy]
   get '/signup' => 'users#new', as: 'signup'
 end
