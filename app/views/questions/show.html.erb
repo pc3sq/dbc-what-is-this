@@ -1,5 +1,5 @@
 <div class="nav">
-  <%= link_to "back", :back %>
+  <%= link_to "back", questions_path %>
   <%= link_to 'Edit', edit_question_path(@question) %>
   <%= link_to 'Delete Question', {action: 'destroy', id: @question.id}, method: :delete, data: {confirm: "Are you sure?"} %>
 </div>
@@ -16,7 +16,9 @@
 </header>
 
 <section class="col-center col-6">
-  <% 10.times do %>
-    <%= render 'response' %>
+<%= link_to 'Create Response', new_question_response_path(@question) %>
+
+  <% @question.responses.each do |response| %>
+    <%= render partial: 'response', locals: {response: response} %>
   <% end %>
 </section>
