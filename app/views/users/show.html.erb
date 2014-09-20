@@ -1,12 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <header class="page-header col-12">
   <h1>Was Ist Das?</h1>
   <p>Select an image below</p>
   <%= button_to "Create New Question", new_question_path, method: :get %>
-  <%= button_to "Signup", signup_path, method: :get %>
-  <%= button_to "Login", login_path, method: :get %>
-  <%= button_to "Login with Google", google_login_path, method: :get %>
+
+  <%= button_to "Logout", logout_path, method: :delete %>
+
 </header>
 
 <div class="col-12">
