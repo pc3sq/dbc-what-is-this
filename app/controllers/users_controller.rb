@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def create
-
+    params[]
   end
 
   def destroy
