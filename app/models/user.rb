@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_many :responses
-  has_many :questions
+  has_many :questions, dependent: :destroy
 
   validates :email, presence: true
   validates :email, uniqueness: true
