@@ -37,6 +37,7 @@ class ResponsesController < ApplicationController
   end
 
   def up_vote
+    response = Response.find(params[:id])
 
   end
 
