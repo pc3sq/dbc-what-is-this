@@ -35,6 +35,7 @@ class CommentsController < ApplicationController
     redirect_to response.question
   end
 
+
   private
 
   def comment_params

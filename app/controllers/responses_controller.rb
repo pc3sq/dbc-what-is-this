@@ -36,6 +36,10 @@ class ResponsesController < ApplicationController
     redirect_to question
   end
 
+  def up_vote
+
+  end
+
   private
 
   def set_response
