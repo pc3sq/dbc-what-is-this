@@ -5,18 +5,20 @@ class SessionsController < ActionController::Base
   end
 
   def create
-     @user = User.find_by_email params[:email]
-    if @user && @user.authenticate(params[:password])
-      login @user
+    @user = User.find_by_email(params[:user][:email])
+    if @user && @user.authenticate(params[:user][:password])
+      session[:current_user] = @user.id
       redirect_to user_path(@user)
     else
       flash[:notice] = "Bad email/password combination"
-      render :login
+      redirect_to login_path
     end
   end
 
   def destroy
     session[:current_user] = nil
+
+    redirect_to questions_path
   end
 
 end
