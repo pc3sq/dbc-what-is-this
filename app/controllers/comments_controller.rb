@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
 
     if comment.save
-      response.comment << @comment
-      redirect_to @response.question
+      response.comments << comment
+      redirect_to response.question
     else
       render :new
     end
@@ -22,15 +22,17 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment.update
+    response = Response.find(@comment.response_id)
+    @comment.update(comment_params)
 
-    redirect_to question_path(@question)
+    redirect_to response.question
   end
 
   def destroy
+    response = Response.find(@comment.response_id)
     @comment.destroy
 
-    redirect_to question_path(@question)
+    redirect_to response.question
   end
 
   private
