@@ -12,11 +12,9 @@ class OauthsController < ActionController::Base
 
     @user = User.find_or_create_by(email: user_info["email"], password_digest: "wasistdas")
     @user.update(name: user_info["name"])
-    p @user
     session[:current_user] = @user.id
 
     redirect_to user_path(@user)
-
   end
 
   private
@@ -33,4 +31,5 @@ class OauthsController < ActionController::Base
                   :token_url => "/o/oauth2/token"
                 })
   end
+
 end
