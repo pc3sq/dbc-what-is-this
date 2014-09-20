@@ -1,0 +1,24 @@
+<header class="page-header col-12">
+  <h1>Was Ist Das?</h1>
+  <p>Select an image below</p>
+  <%= button_to "Create New Question", new_question_path, method: :get %>
+
+  <%= button_to "Logout", logout_path, method: :delete %>
+
+</header>
+
+<div class="col-12">
+  <ol class="thumb-grid group clearfix">
+    <% @questions.each_slice(7) do |question_set| %>
+      <div class="row">
+        <% question_set.each do |question| %>
+        <li>
+          <%= link_to question_path(question) do %>
+            <img src=<%= question.image_path %> class="rounded">
+          <% end %>
+        </li>
+        <% end %>
+      </div>
+    <% end %>
+  </ol>
+</div>

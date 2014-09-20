@@ -1,0 +1,9 @@
+<%= form_for(@user) do |f| %>
+  <div class="actions">
+    <%= f.text_field :name, placeholder: "Name", :required => true%><br>
+    <%= f.text_field :email, placeholder: "Email", :required => true %><br>
+    <%= f.text_field :password,placeholder: "Password", :required => true %><br>
+    <%= f.text_field :password_confirmation,placeholder: "Confirm Password", :required => true %><br>
+    <%= f.submit %>
+  </div>
+<% end %>
