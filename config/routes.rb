@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [ :update, :show, :destroy]
+  resources :users, except: :index
   get '/signup' => 'users#new', as: 'signup'
 end
