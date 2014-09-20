@@ -1,2 +1,22 @@
 <h1>Comment#new</h1>
-<p>Find me in app/views/comment/new.html.erb</p>
+
+<%= form_for @comment, url: response_comments_path(params[:respond_id]) do |f| %>
+  <p>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<P>
+  <% link_to "delete comment", [comment.response, comment],
+                                method: :delete,
+                                data: {confirm: "Are you sure you want to delete?"} %>
+</P><P>
+  <% link_to "edit comment", [comment.response, comment],
+                                method: :edit,
+                                data: {confirm: "Are you sure you want to edit?"} %>
+</P>

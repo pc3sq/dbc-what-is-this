@@ -1,4 +1,4 @@
-<div class="response">
+<div data-idclass="response">
   <h3><i class="fa fa-user"></i> Nathan</h3>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
@@ -7,5 +7,10 @@
   <% 3.times do %>
     <%= render 'comment' %>
   <% end %>
+  <br>
+
   <button class="add_comment">Add Comment</button>
+
+  <%= button_to "Add Comment", new_response_comments_path(answer), method: :get %>
+
 </div>
