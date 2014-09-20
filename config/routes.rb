@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   root 'questions#index'
 
-  resources :questions
+  resources :questions, shallow: true do
+    resources :responses, shallow: true do
+      resources :comments
+    end
+  end
 
   resources :users, only: [:create, :update, :show, :destroy]
   get '/signup' => 'users#new', as: 'signup'
