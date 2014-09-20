@@ -15,4 +15,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :update, :show, :destroy]
   get '/signup' => 'users#new', as: 'signup'
+
+  # get '/upvote' => 'comments#up_vote'
+  post '/response/up_vote' => "responses#up_vote"
 end
