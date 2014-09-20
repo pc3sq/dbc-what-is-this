@@ -16,24 +16,24 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to @question, notice: 'Post was successfully created.'
+      redirect_to @question, notice: 'Question was successfully created.'
     else
-      render :new, notice: 'Post failed to create, try again.'
+      render :new, notice: 'Question failed to create, try again.'
     end
   end
 
   def update
     if @question.update(question_params)
-      redirect_to @question, notice: 'Post was successfully updated.'
+      redirect_to @question, notice: 'Question was successfully updated.'
     else
-      render :edit, notice: 'Post failed to update, try again.'
+      render :edit, notice: 'Question failed to update, try again.'
     end
   end
 
   def destroy
     @question.destroy
 
-    redirect_to questions_url, notice: 'Post was successfully destroyed.'
+    redirect_to questions_url, notice: 'Question was successfully destroyed.'
   end
 
   private
