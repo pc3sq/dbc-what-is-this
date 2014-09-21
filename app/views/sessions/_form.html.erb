@@ -1,7 +1,7 @@
-<%= form_for(@user, url: sessions_path) do |f| %>
-  <div class="actions">
-    <%= f.text_field :email, placeholder: "Email" %><br>
-    <%= f.text_field :password,placeholder: "Password" %><br>
-    <%= f.submit %>
-  </div>
+<%= form_for @user, url: sessions_path do |f| %>
+
+  <%= f.email_field :email, placeholder: "Email", required: true, autofocus: true %><br>
+  <%= f.password_field :password, placeholder: "Password", required: true %><br>
+  <%= f.submit %>
+
 <% end %>
