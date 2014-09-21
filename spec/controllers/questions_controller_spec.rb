@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe QuestionsController, :type => :controller do
 
   describe "question panel success" do
+
     it "index" do
       get :index
       expect(assigns(:questions)).to eq Question.all
@@ -15,6 +16,10 @@ RSpec.describe QuestionsController, :type => :controller do
     end
 
     context "#create" do
+      before(:each) do
+        user = User.create(name: "test", email: "test@test.com", password:"test", password_confirmation:"test")
+        session[:current_user] = user.id
+      end
       it "creates a question with valid params" do
         post :create, question: {title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif'}
         expect(response).to redirect_to("/questions/#{Question.last.id}")
