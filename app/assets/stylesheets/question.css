@@ -12,3 +12,21 @@ header.question-header img {
   box-shadow: 1px 1px 5px #777;
   max-width: 800px;
 }
+.modal{
+  display: none;
+  width: 30%;
+  left: 50%;
+  margin: 0 0 0 -15%;
+  position:fixed;
+  z-index:10;
+  box-shadow: 0 0 1em white;
+  border-radius:10px;
+  background-color: #ECF0F1;
+}
+.modal form{
+  padding: 1em;
+}
+.modal input, textarea{
+  display: block;
+  width: 100%;
+}

@@ -9,11 +9,10 @@ class SessionsController < ActionController::Base
 
     if @user && @user.authenticate(params[:user][:password])
       session[:current_user] = @user.id
-      redirect_to root_path
     else
       flash[:notice] = "Bad email/password combination"
-      redirect_to login_path
     end
+    redirect_to root_path
   end
 
   def destroy

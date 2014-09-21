@@ -4,13 +4,11 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    @question = Question.new
+    @user = User.new
   end
 
   def show
-  end
-
-  def new
-    @question = Question.new
   end
 
   def create

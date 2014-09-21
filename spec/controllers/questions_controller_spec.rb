@@ -9,12 +9,6 @@ RSpec.describe QuestionsController, :type => :controller do
       expect(assigns(:questions)).to eq Question.all
     end
 
-    it "#new" do
-      get :new
-      expect(assigns(:question)).to be_a Question
-      expect(response).to render_template(:new)
-    end
-
     context "#create" do
       before(:each) do
         user = User.create(name: "test", email: "test@test.com", password:"test", password_confirmation:"test")
