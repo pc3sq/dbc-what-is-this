@@ -8,7 +8,9 @@ $(document).ready( function () {
       data: { id: commentId },
       dataType: 'JSON'
     }).done( function (response) {
+      $("button.upvote").closest(".response").append("<p>" + response + "</p>")
     }).fail( function (response) {
+        console.log("Failed. Here is the response:")
         console.log(response);
     })
   })
