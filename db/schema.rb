@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140919152929) do
     t.text     "caption"
     t.string   "slug"
     t.integer  "user_id"
+    t.integer  "response_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
