@@ -1,6 +1,9 @@
 <div class="response">
 
   <h3><i class="fa fa-user"></i> <%= response.user ? response.user.name : 'Default' %></h3>
+  <div class="vote">
+    <button data-id="<%= response.id %>" class="upvote">UpVote</button>
+  </div>
   <p><%= response.content %></p>
 
   <% if response.user.id == session[:current_user] %>
@@ -17,5 +20,4 @@
   <% response.comments.each do |comment| %>
     <%= render partial: 'comment', locals: {comment: comment} %>
   <% end %>
-   <button data-id="<%= response.id %>" class="upvote">UpVote</button>
 </div>
