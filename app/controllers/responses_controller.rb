@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
 
-  before_action :set_response, only: [:edit, :update, :destroy]
+  before_action :set_response, only: [:edit, :update, :destroy, :mark_as_best]
 
   def new
     @response = Response.new
@@ -47,6 +47,16 @@ class ResponsesController < ApplicationController
       render @response.question
     end
 
+  end
+
+  def mark_as_best
+    question = @response.question
+
+    if question.responses.include?(@response)
+      question.update(response_id: @response.id)
+    end
+
+    redirect_to @response.question
   end
 
   private
