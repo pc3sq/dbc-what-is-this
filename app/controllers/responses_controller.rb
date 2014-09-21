@@ -36,6 +36,23 @@ class ResponsesController < ApplicationController
     redirect_to question
   end
 
+  def up_vote
+    puts "=" * 50
+    puts session[:current_user]
+    puts "=" * 50
+
+    @response = Response.find(params[:id])
+
+    vote = Vote.new( response_id: @response.id, user_id: session[:current_user] )
+
+    if vote.save!
+      render text: @response.votes.count
+    else
+      render @response.question
+    end
+
+  end
+
   private
 
   def set_response

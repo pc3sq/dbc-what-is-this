@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :index]
 
 
+  post '/response/up_vote' => "responses#up_vote"
+
 end
