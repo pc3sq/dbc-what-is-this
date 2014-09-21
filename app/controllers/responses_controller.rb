@@ -37,7 +37,15 @@ class ResponsesController < ApplicationController
   end
 
   def up_vote
-    response = Response.find(params[:id])
+    puts "=" * 50
+    puts params
+    puts "=" * 50
+
+    @response = Response.find(params[:id])
+
+    # @response.add_vote
+
+    render text: @response.votes.count
 
   end
 
