@@ -46,5 +46,6 @@ gem 'faker'
 
 gem 'rspec-rails', :group => [:development, :test]
 gem 'rake', group: :test
+gem 'simplecov', :require => false, :group => :test
 
 
