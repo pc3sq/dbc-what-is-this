@@ -1,6 +1,6 @@
 $(document).ready( function () {
   $(".upvote").click( function(event) {
-    var responseId = $(".upvote").data("id");
+    var responseId = $(this).data("id");
     event.preventDefault();
     $.ajax({
       url: '/response/up_vote',
