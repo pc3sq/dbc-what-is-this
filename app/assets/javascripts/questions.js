@@ -31,10 +31,10 @@ $(document).ready( function () {
       dataType: 'JSON',
     }).done(function(data){
         $('ol.thumb-grid').load('/ .thumb-grid');
-        // clear_modals();
-        reset_question_form()
+        clear_modals();
+        reset_question_form();
     }).fail(function(data){
-        reset_question_form()
+        reset_question_form();
     });
   });
 });
