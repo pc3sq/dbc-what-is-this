@@ -17,5 +17,5 @@
   <% response.comments.each do |comment| %>
     <%= render partial: 'comment', locals: {comment: comment} %>
   <% end %>
-
+   <button data-id="<%response.id%>" class="upvote">UpVote</button>
 </div>
