@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, :type => :controller do
 
+  @comment = Comment.new( body: "This answer isn't right",
+                          user_id: 2, 
+                          response_id: 2)
+
   describe 'comments controller' do
 
     it '#new' do
