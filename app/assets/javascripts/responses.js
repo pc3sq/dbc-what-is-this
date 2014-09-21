@@ -1,5 +1,5 @@
 $(document).ready( function () {
-  $(".upvote").click( function() {
+  $(".upvote").click( function(event) {
     var responseId = $(".upvote").data("id");
     event.preventDefault();
     $.ajax({
