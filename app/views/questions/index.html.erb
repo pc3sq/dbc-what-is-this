@@ -5,21 +5,6 @@
   <% end %>
 
 </header>
-
-<% if session[:current_user] %>
-  <p id="notice"><%= notice %></p>
-  <div id='new_question_modal' class='modal'>
-    <%= render 'form' %>
-  </div>
-<% else %>
-  <div id='login_modal' class='modal'>
-    <%= render '/login' %>
-  </div>
-
-  <div id='signup_modal' class='modal'>
-    <%= render 'users/new' %>
-  </div>
-<% end %>
 <div class="col-12">
   <ol class="thumb-grid group clearfix">
 
