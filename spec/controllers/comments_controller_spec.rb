@@ -3,70 +3,57 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, :type => :controller do
 
-  let(:comment){Comment.new(body: "This is a great comment!",
-                        user_id: 2,
-                        response_id: 2)
-              }
-
-  # let(:response){Response.create(content: "This is a great response!",
-  #                       user_id: 1,
-  #                       question_id: 1)
-  #             }
+  before(:each) do
+    @user = User.create(name: "test", email: "test@test.com", password:"test", password_confirmation:"test")
+    session[:current_user] = @user.id
+    @question = Question.create(title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif', user_id: @user.id)
+    @myresponse = Response.create(content:'hello world', question_id: @question.id, user_id: @user.id)
+    @comment = Comment.create(body: "my comment", response_id: @myresponse.id, user_id: @user.id)
+  end
 
   describe "comment test success" do
 
   	it "comments#new" do
-    	get :new, response_id: 2
+    	get :new, response_id: 1
    		expect(assigns(:comment)).to be_a Comment
-      expect(response).to render_template(:new)
   	end
   end
 
- 
-    context "comments#create" do
+    context "#create" do
     	it "creates a comment with valid params" do
-        post :create, comment: ({response_id: 1, user_id: 1, body: "what is it"} )
-
-        expect(response).to change{Comment.count}.by(1)
+        expect{
+          post :create, response_id: @myresponse, comment: { body: "what is it", user_id: @user_id } 
+          }.to change{Comment.count}.by(1)
     	end
   	end
 
       it "does not create a comment when params are invalid" do
-      	post :create, {response_id: 1, comment: {body: nil} }
+      	post :create, response_id: @myresponse, comment: {body: nil, user_id: @user_id} 
         expect(response).to render_template(:new)
     end
 
-    # context "#create" do
-    #   it "creates a comment with valid params" do
-    #     expect {
-    #       post :create, :response_id { response_id: 1, comment: {body: "New comment!"} }
-    #       }.to change{Comment.count}.by(1)
-    #   end
-    # end
+      context "#update" do
 
-      # context "#update" do
-      #   before(:each) do
+        it "it updates a comment when params are valid" do
+          put :update, id: @comment, comment: {body: "This is a great comment!"}
+          expect(response).to redirect_to("/questions/#{Comment.last.response.question.id}")
+        end
 
-      #     @comment = Comment.create({body: "This is a great comment!"})
-      #   end
+        it "it does not update a comment when params are invalid" do
+          put :update, id: @comment, comment: {body: nil}
+          expect(response).to redirect_to("/questions/#{Comment.last.response.question.id}")
+        end
+      end
 
-      #   it "it updates a comment when params are valid" do
-      #     put :update, id: @comment, comment: {body: "This is a great comment!"}
-      #     expect(response).to redirect_to #ask peter
-      #   end
+      context "#destroy" do
+        it "should delete the comment" do
+        expect { delete :destroy, id: @comment }.to change(Comment,:count).by(-1)
+      end
+    end
 
-      #   it "it does not update a comment when params are invalid" do
-      #     put :update, id: @comment, comment: {body: nil}
-      #     expect(response).to render_template(:edit)
-      #   end
-      # end
-
-      # it "#destroy" do
-      #   comment = Comment.new
-      #   comment.body = "greate comment"
-      #   comment.save
-      #   num_comments = Comment.count
-      #   expect { delete :destroy, :id => comment }.to change { Comment.count }.from(num_comments).to(num_comments-1) #BUGBUG
-      # end
+    it "should redirect user to admin comments" do
+        delete :destroy, id: @comment
+        expect(response).to redirect_to("/questions/#{@myresponse.question.id}")
+      end
 end
 
