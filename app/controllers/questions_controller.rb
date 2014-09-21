@@ -14,12 +14,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    user = User.find(session[:current_user])
-    question = Question.new(question_params)
+    @user = User.find(session[:current_user])
+    @question = Question.new(question_params)
 
-    if question.save
-      user.questions << question
-      redirect_to question, notice: 'Question was successfully created.'
+    if @question.save
+      @user.questions << @question
+      redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new, notice: 'Question failed to create, try again.'
     end
