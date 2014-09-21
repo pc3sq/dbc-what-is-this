@@ -1,24 +1,15 @@
-<header class="page-header col-12">
-  <h1>Was Ist Das?</h1>
-  <p>Select an image below</p>
-  <%= button_to "Create New Question", new_question_path, method: :get %>
-
-  <%= button_to "Logout", logout_path, method: :delete %>
-
-</header>
+<h2><%= @user.name %>'s questions</h2>
 
 <div class="col-12">
   <ol class="thumb-grid group clearfix">
-    <% @questions.each_slice(7) do |question_set| %>
-      <div class="row">
-        <% question_set.each do |question| %>
-        <li>
-          <%= link_to question_path(question) do %>
-            <img src=<%= question.image_path %> class="rounded">
-          <% end %>
-        </li>
+
+    <% @questions.each do |question| %>
+      <li>
+        <%= link_to question_path(question) do %>
+          <img src='<%= question.image_path %>' class="thumb" >
         <% end %>
-      </div>
+      </li>
     <% end %>
+
   </ol>
 </div>
