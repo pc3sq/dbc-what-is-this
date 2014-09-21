@@ -37,10 +37,6 @@ class ResponsesController < ApplicationController
   end
 
   def up_vote
-    puts "=" * 50
-    puts session[:current_user]
-    puts "=" * 50
-
     @response = Response.find(params[:id])
 
     vote = Vote.new( response_id: @response.id, user_id: session[:current_user] )
