@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
         format.js { render json: @question }
       else
         @error = { notice: 'Question failed to create, try again.'}
-        format.html { render :new, notice: 'Question failed to create, try again.' }
+        format.html { render :index, notice: 'Question failed to create, try again.' }
         format.js { render json: @error }
       end
     end
