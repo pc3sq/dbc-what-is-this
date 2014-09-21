@@ -20,7 +20,7 @@ class OauthsController < ActionController::Base
       end
       session[:current_user] = @user.id
     end
-    redirect_to questions_path
+    redirect_to root_path
   end
 
   private
