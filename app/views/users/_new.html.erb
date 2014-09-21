@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for @user do |f| %>
+
+  <%= f.text_field :name, placeholder: "Name", required: true, autofocus: true %><br>
+  <%= f.email_field :email, placeholder: "Email", required: true %><br>
+  <%= f.password_field :password, placeholder: "Password", required: true %><br>
+  <%= f.password_field :password_confirmation, placeholder: "Confirm Password", required: true %><br>
+  <%= f.submit 'Sign Up'%>
+
+<% end %>
+
