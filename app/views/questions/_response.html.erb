@@ -2,9 +2,9 @@
 
   <h3><i class="fa fa-user"></i> <%= response.user ? response.user.name : 'Default' %></h3>
   <div class="vote">
-    <div class="votecount"
-      <span><%= response.votes.count %> <a data-id="<%= response.id %>" class="upvote">&#65514;</a></span>
-      <p>votes</p>
+    <div class="votecount">
+      <a data-id="<%= response.id %>" class="upvote">&#65514;</a>
+      <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
     </div>
   </div>
   <p><%= response.content %></p>
