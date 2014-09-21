@@ -1,13 +1,27 @@
-<p id="notice"><%= notice %></p>
+
 
 <header class="page-header col-12">
 
   <% if session[:current_user] %>
-    <%= button_to "Create New Question", new_question_path, method: :get %>
+  <%= button_to "Create New Question", {method: :get}, { class: "new_question" }%>
   <% end %>
 
 </header>
 
+<% if session[:current_user] %>
+  <p id="notice"><%= notice %></p>
+  <div id='new_question_modal' class='modal'>
+    <%= render 'form' %>
+  </div>
+<% else %>
+  <div id='login_modal' class='modal'>
+    <%= render 'sessions/new' %>
+  </div>
+
+  <div id='signup_modal' class='modal'>
+    <%= render 'users/new' %>
+  </div>
+<% end %>
 <div class="col-12">
   <ol class="thumb-grid group clearfix">
 
