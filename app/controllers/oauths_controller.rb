@@ -5,20 +5,22 @@ class OauthsController < ActionController::Base
   end
 
   def callback
-    access_token = client.auth_code.get_token(params[:code], :redirect_uri => 'http://localhost:3000/callback')
-    response = access_token.get('https://www.googleapis.com/oauth2/v1/userinfo?alt=json')
+    if params[:code]
+      access_token = client.auth_code.get_token(params[:code], :redirect_uri => 'http://localhost:3000/callback')
 
-    user_info = JSON.parse(response.body)
+      response = access_token.get('https://www.googleapis.com/oauth2/v1/userinfo?alt=json')
 
-    @user = User.find_by(email: user_info["email"])
-    if @user
-      @user.update(name: user_info["name"])
-    else
-      @user = User.create(name: user_info["name"], email: user_info["email"], password:'wasistdas', password_digest: 'wasistdas' )
+      user_info = JSON.parse(response.body)
+
+      @user = User.find_by(email: user_info["email"])
+      if @user
+        @user.update(name: user_info["name"])
+      else
+        @user = User.create(name: user_info["name"], email: user_info["email"], password:'wasistdas', password_digest: 'wasistdas' )
+      end
+      session[:current_user] = @user.id
     end
-    session[:current_user] = @user.id
-    redirect_to user_path(@user)
-
+    redirect_to questions_path
   end
 
   private
