@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :sessions, only: [:new, :create, :destroy]
-  get '/login' => 'sessions#new', as: 'login'
+  resources :sessions, only: [:create, :destroy]
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy', as: 'logout'
 
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, except: :index
-  get '/signup' => 'users#new', as: 'signup'
+  resources :users, except: [:new, :index]
+
 
 end
