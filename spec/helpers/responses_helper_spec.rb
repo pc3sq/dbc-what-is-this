@@ -1,17 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe ResponsesController, :type => :controller do
+RSpec.describe ResponsesHelper, :type => :helper do
 
-  before(:each) do
+  it "#mark_as_best should return true" do
     @user = User.create(name: "test", email: "test@test.com", password:"test", password_confirmation:"test")
-    session[:current_user] = @user.id
     @question = Question.create(title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif', user_id: @user.id)
-    @myresponse = Response.create(content:'hello world', question: @question, user: @user)
-  end
-
-  it "#mark_as_best should add the response as 'best response' to question" do
-    post :mark_as_best, id: @myresponse
-    expect(Question.last.best_response).to eq(@myresponse)
+    @myresponse = Response.create(content:'hello world', question_id: @question.id, user_id: @user.id)
+    @question.update(response_id: @myresponse.id)
+    expect(best_response?(@myresponse)).to be_truthy
   end
 
 end
