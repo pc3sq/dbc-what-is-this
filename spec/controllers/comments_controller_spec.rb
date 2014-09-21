@@ -9,7 +9,8 @@ RSpec.describe CommentsController, :type => :controller do
   describe 'comments controller' do
 
     it '#new' do
-
+      get :new
+      expect(assigns(@comment)).to be_a_new(Comment)
     end
 
     it '#create' do
