@@ -7,11 +7,7 @@ $(document).ready( function () {
 
   $('#screen_block').click(function(event){
     event.preventDefault();
-
-    $('#screen_block').hide();
-    $('#login_modal').hide();
-    $('#signup_modal').hide();
-    $('#new_question_modal').hide();
+    clear_modals();
   });
 
   $('#login').click(function(event){
