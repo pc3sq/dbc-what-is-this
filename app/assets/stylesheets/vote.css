@@ -1,4 +1,6 @@
-button.upvote {
-  float: right;
+.vote {
+  position: relative;
+  left: 465px;
+
 }
 
