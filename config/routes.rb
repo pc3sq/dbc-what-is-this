@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :users, except: :index
   get '/signup' => 'users#new', as: 'signup'
 
+  post '/response/up_vote' => "responses#up_vote"
+
 end
