@@ -16,7 +16,9 @@
   <% if response.user.id == session[:current_user] %>
     <%= link_to 'Edit', edit_response_path(response) %>
     <%= link_to 'Delete', response, method: :delete, data: {confirm: "You sure bub?" } %>
-    <%= link_to 'Mark as best', mark_best_response_path(response), method: :post, data: {confirm: "You sure bub?" } %>
+    <% if !best_response?(response) %>
+      <%= link_to 'Mark as best', mark_best_response_path(response), class: 'mark-as-best', data: { id: response.id } %>
+    <% end %>
   <% end %>
 
   <span><i class="fa fa-comments"></i> Comments</span>
