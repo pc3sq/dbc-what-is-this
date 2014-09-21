@@ -3,7 +3,11 @@
   <div class="vote">
     <div class="votecount">
       <a data-id="<%= response.id %>" class="upvote">&#65514;</a>
-      <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
+      <% if response.votes.count == 1 %>
+        <span data-id="<%= response.id %>"> <%= response.votes.count %> vote</span>
+      <% else %>
+        <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
+      <% end %>
     </div>
   </div>
   <p><%= response.content %></p>
