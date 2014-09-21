@@ -6,7 +6,7 @@ RSpec.describe QuestionsController, :type => :controller do
 
     it "index" do
       get :index
-      expect(assigns(:questions)).to eq Question.all
+      expect(assigns(:questions)).to eq Question.all.order('created_at DESC')
     end
 
     context "#create" do
@@ -20,7 +20,7 @@ RSpec.describe QuestionsController, :type => :controller do
       end
       it "doesn't create a question when params are invalid" do
         post :create, question: {title: '', caption: "world?"}
-        expect(response).to render_template(:new)
+        expect(response).to render_template(:index)
       end
     end
 
