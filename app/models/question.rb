@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :responses, dependent: :destroy
 
-  validates :image_path, presence: true
+  validates :image_path, uniqueness: { scope: :user}, presence: true
   validates_format_of :image_path, :with => URI::regexp(%w(http https))
 
   before_save :create_slug

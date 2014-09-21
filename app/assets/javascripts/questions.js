@@ -23,19 +23,26 @@ $(document).ready( function () {
   });
   $('form#new_question').submit(function(event){
     event.preventDefault();
+    $('form#new_question input[type="submit"').prop('disable', true);
     $.ajax({
       url: '/questions',
       type: 'POST',
       data: $('form#new_question').serialize(),
       dataType: 'JSON',
     }).done(function(data){
-      $('ol.thumb-grid').load('/ .thumb-grid')
-      clear_modals();
+        $('ol.thumb-grid').load('/ .thumb-grid');
+        clear_modals();
+        reset_question_form();
     }).fail(function(data){
-      console.log(data);
+        reset_question_form();
     });
   });
 });
+
+function reset_question_form(){
+  $('form#new_question').trigger('reset');
+  $('form#new_question input[type="submit"').prop('disable', false);
+}
 
 function clear_modals(){
   $('#screen_block').hide();
