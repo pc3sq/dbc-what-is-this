@@ -38,14 +38,18 @@ class ResponsesController < ApplicationController
 
   def up_vote
     puts "=" * 50
-    puts params
+    puts session
     puts "=" * 50
 
     @response = Response.find(params[:id])
 
-    # @response.add_vote
+    vote = Vote.new( response_id: @response.id, user_id: session[:current_user] )
 
-    render text: @response.votes.count
+    if vote.save!
+      render text: @response.votes.count
+    else
+      render @response.question
+    end
 
   end
 
