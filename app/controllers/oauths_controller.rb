@@ -1,12 +1,12 @@
 class OauthsController < ActionController::Base
 
   def new
-    redirect_to client.auth_code.authorize_url(:redirect_uri => 'http://localhost:3000/callback',:scope => 'https://www.googleapis.com/auth/userinfo.email',:access_type => "offline")
+    redirect_to client.auth_code.authorize_url(:redirect_uri => 'http://wasistdas.herokuapp.com/callback',:scope => 'https://www.googleapis.com/auth/userinfo.email',:access_type => "offline")
   end
 
   def callback
     if params[:code]
-      access_token = client.auth_code.get_token(params[:code], :redirect_uri => 'http://localhost:3000/callback')
+      access_token = client.auth_code.get_token(params[:code], :redirect_uri => 'http://wasistdas.herokuapp.com/callback')
 
       response = access_token.get('https://www.googleapis.com/oauth2/v1/userinfo?alt=json')
 
