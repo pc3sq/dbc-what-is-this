@@ -38,7 +38,7 @@ class ResponsesController < ApplicationController
 
   def up_vote
     puts "=" * 50
-    puts session
+    puts session[:current_user]
     puts "=" * 50
 
     @response = Response.find(params[:id])
