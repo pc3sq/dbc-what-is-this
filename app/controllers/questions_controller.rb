@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,10 +14,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
+    user = User.find(session[:current_user])
+    question = Question.new(question_params)
 
-    if @question.save
-      redirect_to @question, notice: 'Question was successfully created.'
+    if question.save
+      user.questions << question
+      redirect_to question, notice: 'Question was successfully created.'
     else
       render :new, notice: 'Question failed to create, try again.'
     end
@@ -42,11 +45,11 @@ class QuestionsController < ApplicationController
   private
 
   def set_question
-      @question = Question.find(params[:id])
+    @question = Question.find(params[:id])
   end
 
   def question_params
-    params.require(:question).permit(:title,:caption,:image_path)
+    params.require(:question).permit(:image_path, :title, :caption)
   end
 
 end
