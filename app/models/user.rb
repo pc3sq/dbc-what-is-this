@@ -1,15 +1,16 @@
 class User < ActiveRecord::Base
+
   has_secure_password
 
-  has_many :comments
-  has_many :votes
-  has_many :responses
   has_many :questions, dependent: :destroy
+  has_many :responses, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
-  validates :email, presence: true
-  validates :email, uniqueness: true
+  validates :email, presence: true, uniqueness: true
   validates_format_of :email, :with => (/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i)
 
   validates :password, presence: true
-  validates_format_of :password, :with => (/([a-zA-Z]|\d){2,}/) #refactor out into a CONSTANT?
+  validates_format_of :password, :with => (/([a-zA-Z]|\d){2,}/)
+
 end
