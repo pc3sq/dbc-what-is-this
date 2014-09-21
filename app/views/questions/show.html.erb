@@ -1,22 +1,31 @@
-<div class="nav">
-  <%= link_to "back", questions_path %>
-  <%= link_to 'Edit', edit_question_path(@question) %>
-  <%= link_to 'Delete Question', {action: 'destroy', id: @question.id}, method: :delete, data: {confirm: "Are you sure?"} %>
-</div>
-<br><br>
 <header class="question-header">
+
   <p id="notice"><%= notice %></p>
+
   <h2><%= @question.title %></h2>
+
   <div class="col-center col-6">
     <p><%= @question.caption %></p>
   </div>
+
   <%= link_to(@question.image_path) do %>
     <img src=<%= @question.image_path %> class="rounded">
   <% end %>
+
+  <% if @question.user.id == session[:current_user] %>
+    <div class="question-menu">
+      <%= link_to 'Edit', edit_question_path(@question) %>
+      <%= link_to 'Delete Question', {action: 'destroy', id: @question.id}, method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
+  <% end %>
+
 </header>
 
 <section class="col-center col-6">
-<%= link_to 'Create Response', new_question_response_path(@question) %>
+
+  <% if session[:current_user] %>
+    <%= link_to 'Create Response', new_question_response_path(@question) %>
+  <% end %>
 
   <% @question.responses.each do |response| %>
     <%= render partial: 'response', locals: {response: response} %>

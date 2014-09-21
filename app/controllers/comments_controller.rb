@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     response = Response.find(params[:response_id])
-    comment = Comment.new(comment_params)
+    comment = Comment.new(body: comment_params[:body], user_id: session[:current_user])
 
     if comment.save
       response.comments << comment
@@ -37,12 +37,12 @@ class CommentsController < ApplicationController
 
   private
 
-  def comment_params
-    params.require(:comment).permit(:body)
-  end
-
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body)
   end
 
 end

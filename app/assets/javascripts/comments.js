@@ -4,11 +4,9 @@ var commentForm =  '<form id="comment_form" action="/comments" method="POST" nam
     <input type="submit" value="Add This Comment">
   </form>'
 
-
 function appendCommentForm () {
   $(".response").append(commentForm)
 }
-
 
 $(document).ready( function () {
   $("button.add_comment").click( function() {

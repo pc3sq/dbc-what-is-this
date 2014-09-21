@@ -1,10 +1,21 @@
 <div class="response">
+
   <h3><i class="fa fa-user"></i> <%= response.user ? response.user.name : 'Default' %></h3>
   <p><%= response.content %></p>
 
+  <% if response.user.id == session[:current_user] %>
+    <%= link_to 'Edit', edit_response_path(response) %>
+    <%= link_to 'Delete', response, method: :delete, data: {confirm: "You sure bub?" } %>
+  <% end %>
+
   <span><i class="fa fa-comments"></i> Comments</span>
-  <%= link_to 'Add Comment', new_response_comment_path(response) %>
+
+  <% if session[:current_user] %>
+    <%= link_to 'Add Comment', new_response_comment_path(response) %>
+  <% end %>
+
   <% response.comments.each do |comment| %>
     <%= render partial: 'comment', locals: {comment: comment} %>
   <% end %>
+
 </div>

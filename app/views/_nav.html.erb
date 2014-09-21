@@ -1,0 +1,16 @@
+<nav class="col-12 clearfix">
+
+  <h1><%= link_to 'Was Ist Das?', root_path, class: 'page-title' %></h1>
+
+  <div id="menu">
+    <% if session[:current_user] %>
+      <%= link_to logout_path, method: :delete do %><i class="fa fa-sign-out"></i> Logout<% end %>
+    <% else %>
+      <%= link_to signup_path do %><i class="fa fa-edit"></i> Signup<% end %>
+      <%= link_to login_path do %><i class="fa fa-sign-in"></i> Login<% end %>
+      <%= link_to google_login_path, class: 'google' do %><i class="fa fa-google"></i> Sign in with Google<% end %>
+    <% end %>
+  </div>
+
+</nav>
+

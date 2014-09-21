@@ -1,5 +1,3 @@
-<h1>Comment#edit</h1>
-
 <%= form_for @comment, url: comment_path(params[:id]) do |f| %>
   <%= f.label :body %>
   <%= f.text_area :body %>

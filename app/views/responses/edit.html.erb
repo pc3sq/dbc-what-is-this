@@ -1,7 +1,8 @@
-<h1>Edit Response</h1>
+<%= form_for @response, url: response_path(params[:id]) do |f| %>
 
-<p><%= @response.content %></p>
+  <%= f.text_area :content, placeholder: "Content", required: true, autofocus: true %><br>
+  <%= f.submit %>
 
-<%= render 'form' %>
+<% end %>
 
 <%= link_to 'Back', :back %>
