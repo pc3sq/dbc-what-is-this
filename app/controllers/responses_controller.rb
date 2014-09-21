@@ -51,7 +51,11 @@ class ResponsesController < ApplicationController
 
   def mark_as_best
     question = @response.question
-    question.update(response_id: @response.id)
+
+    if question.responses.include?(@response)
+      question.update(response_id: @response.id)
+    end
+
     redirect_to @response.question
   end
 
