@@ -13,9 +13,9 @@ $(document).ready( function () {
       } else {
         $("span[data-id=" + responseId + "]").html(voteCount + " vote");
       }
-    }).fail( function (voteCount) {
-        console.log("Failed. Here is the voteCount:");
-        console.log(voteCount);
+    }).fail( function (failureResponse) {
+        alert("You already voted for this response.");
+        console.log(failureResponse);
     })
   })
 })
