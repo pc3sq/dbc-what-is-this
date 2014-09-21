@@ -8,6 +8,11 @@ $(document).ready( function () {
       data: { id: commentId },
       dataType: 'JSON'
     }).done( function (voteCount) {
+      if (voteCount == 1) {
+        $("span[data-id=" + commentId + "]").html(voteCount + " vote");
+      } else {
+        $("span[data-id=" + commentId + "]").html(voteCount + " vote");
+      }
 
     }).fail( function (voteCount) {
         console.log("Failed. Here is the voteCount:");
