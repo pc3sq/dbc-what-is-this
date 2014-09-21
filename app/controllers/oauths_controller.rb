@@ -10,11 +10,15 @@ class OauthsController < ActionController::Base
 
     user_info = JSON.parse(response.body)
 
-    @user = User.find_or_create_by(email: user_info["email"], password_digest: "wasistdas")
-    @user.update(name: user_info["name"])
+    @user = User.find_by(email: user_info["email"])
+    if @user
+      @user.update(name: user_info["name"])
+    else
+      @user = User.create(name: user_info["name"], email: user_info["email"], password:'wasistdas', password_digest: 'wasistdas' )
+    end
     session[:current_user] = @user.id
-
     redirect_to user_path(@user)
+
   end
 
   private
