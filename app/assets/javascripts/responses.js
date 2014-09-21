@@ -1,5 +1,5 @@
 $(document).ready( function () {
-  $("button.upvote").click( function() {
+  $(".upvote").click( function() {
     var commentId = $(".upvote").data("id");
     event.preventDefault();
     $.ajax({
@@ -8,7 +8,7 @@ $(document).ready( function () {
       data: { id: commentId },
       dataType: 'JSON'
     }).done( function (response) {
-      $("button.upvote").closest(".response").append("<p>" + response + "</p>")
+      $(".upvote").closest(".response").append("<p>" + response + "</p>")
     }).fail( function (response) {
         console.log("Failed. Here is the response:")
         console.log(response);
