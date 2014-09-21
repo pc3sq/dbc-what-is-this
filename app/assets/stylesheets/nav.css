@@ -1,0 +1,41 @@
+nav {
+  padding: 0 40px;
+  height: 80px;
+}
+
+a.page-title, a.page-title.hover, a.page-title.active, a.page-title.visited {
+  text-decoration: none;
+  color: #2C3E50;
+}
+
+#menu {
+  float: right;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#menu a {
+  display: inline-block;
+  text-align: right;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 0;
+  color: #2980B9;
+}
+
+#menu a:hover {
+  text-decoration: underline;
+  color: #34495E;;
+}
+
+#menu a.google {
+  background: #2980B9;
+  color: #fff;
+  margin-left: 20px;
+}
+
+#menu a.google:hover {
+  background: #34495E;
+  text-decoration: none;
+}
