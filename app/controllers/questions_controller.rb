@@ -15,11 +15,16 @@ class QuestionsController < ApplicationController
     @user = User.find(session[:current_user])
     @question = Question.new(question_params)
 
-    if @question.save
-      @user.questions << @question
-      redirect_to @question, notice: 'Question was successfully created.'
-    else
-      render :new, notice: 'Question failed to create, try again.'
+    respond_to do |format|
+      if @question.save
+        @user.questions << @question
+        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.js { render json: @question }
+      else
+        @error = { notice: 'Question failed to create, try again.'}
+        format.html { render :new, notice: 'Question failed to create, try again.' }
+        format.js { render json: @error }
+      end
     end
   end
 
