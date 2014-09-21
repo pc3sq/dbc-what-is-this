@@ -1,9 +1,7 @@
-
-
 <header class="page-header col-12">
 
   <% if session[:current_user] %>
-  <%= button_to "Create New Question", {method: :get}, { class: "new_question" }%>
+  <%= button_to "Create New Question", {method: :get}, { class: "new_question_button" }%>
   <% end %>
 
 </header>
