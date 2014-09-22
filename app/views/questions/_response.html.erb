@@ -28,18 +28,20 @@
 
       <li>
         <% if session[:current_user] %>
-          <%= link_to '#', class: 'upvote', data: { id: response.id } do %>
+          <%= link_to vote_up_response_path(response), class: 'upvote', data: { id: response.id } do %>
             <i class="fa fa-thumbs-up"></i> Vote up
           <% end %>
         <% end %>
       </li>
 
       <li>
-        <% if response.votes.count == 1 %>
-          <span data-id="<%= response.id %>"> <%= response.votes.count %> vote</span>
-        <% else %>
-          <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
-        <% end %>
+        <div class="votes-count">
+          <% if response.votes.count == 1 %>
+            <span data-id="<%= response.id %>"> <%= response.votes.count %> vote</span>
+          <% else %>
+            <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
+          <% end %>
+        </div>
       </li>
     </ul>
 

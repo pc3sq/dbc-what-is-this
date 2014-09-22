@@ -1,30 +1,27 @@
 $(document).ready( function () {
 
-  $(document).on('click', ".upvote", function(event) {
-    var responseId = $(this).data("id");
+  $(document).on('click', '.upvote', function(event) {
     event.preventDefault();
+    var responseId = $(this).data("id");
     $.ajax({
-      url: '/response/up_vote',
+      url: '/responses/' + responseId + '/up_vote',
       type: 'POST',
       data: { id: responseId },
-      dataType: 'JSON'
-    }).done( function (voteCount) {
-      if (voteCount == 1) {
-        $("span[data-id=" + responseId + "]").html(voteCount + " vote");
-      } else {
-        $("span[data-id=" + responseId + "]").html(voteCount + " vote");
-      }
-    }).fail( function (failureResponse) {
+      success: function () {
+        $("div.votes-count").load("/ div.votes-count");
+      },
+      failure: function () {
         alert("You already voted for this response.");
-        console.log(failureResponse);
+      }
     });
   });
 
-  $(document).on('click', '.mark-as-best', function(event){
+
+  $(document).on('click', '.mark-as-best', function(event) {
     event.preventDefault();
     var response_id = $(this).data("id");
     $.ajax({
-      url: "/responses/" + response_id,
+      url: "/responses/" + response_id + '/mark_as_best',
       type: 'POST',
       data: { id: response_id },
       success: function(){
