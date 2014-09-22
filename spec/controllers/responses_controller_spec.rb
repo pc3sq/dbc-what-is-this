@@ -11,11 +11,6 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe "response panel success" do
 
-    it "#new" do
-      get :new, question_id: 1
-      expect(assigns(:response)).to be_a Response
-    end
-
     context "#create" do
 
       it "creates a response with valid params" do
