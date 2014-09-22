@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
     @questions = Question.all.order('created_at DESC')
     @question = Question.new
     @user = User.new
+
   end
 
   def show
