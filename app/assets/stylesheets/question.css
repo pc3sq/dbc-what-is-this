@@ -10,8 +10,9 @@ header.question-header p {
 
 header.question-header img {
   box-shadow: 1px 1px 5px #777;
-  max-width: 800px;
+  max-width: 400px;
 }
+
 .modal{
   display: none;
   width: 30%;
@@ -23,10 +24,19 @@ header.question-header img {
   border-radius:10px;
   background-color: #ECF0F1;
 }
+
 .modal form{
   padding: 1em;
 }
+
 .modal input, textarea{
   display: block;
   width: 100%;
+}
+
+.new-question-button {
+  border: 0;
+  padding: 15px 40px;
+  border-radius: 5px;
+  font-size: 20px;
 }
