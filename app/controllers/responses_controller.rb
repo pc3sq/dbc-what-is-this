@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
 
-  before_action :set_response, only: [:edit, :update, :destroy, :mark_as_best]
+  before_action :set_response, only: [:edit, :update, :destroy, :up_vote, :mark_as_best]
 
   def create
     question = Question.find(params[:question_id])
@@ -31,15 +31,14 @@ class ResponsesController < ApplicationController
   end
 
   def up_vote
-    @response = Response.find(params[:id])
 
     vote = Vote.new( response_id: @response.id, user_id: session[:current_user] )
 
-    if vote.save!
-      render text: @response.votes.count
-    else
-      render @response.question
+    if vote.save
+      @response.votes.count
     end
+
+    redirect_to @response.question
 
   end
 

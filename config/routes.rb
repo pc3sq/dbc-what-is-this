@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  post '/response/up_vote' => "responses#up_vote"
-  post '/responses/:id', to: 'responses#mark_as_best', as: 'mark_best_response'
+  post '/responses/:id/up_vote', to: "responses#up_vote", as: 'vote_up_response'
+  post '/responses/:id/mark_as_best', to: 'responses#mark_as_best', as: 'mark_best_response'
 
 end
