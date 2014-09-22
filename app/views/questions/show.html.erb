@@ -6,11 +6,7 @@
 
     <p id="notice"><%= notice %></p>
 
-    <h2><%= @question.title %></h2>
-
-    <div class="col-center col-6">
-      <p><%= @question.caption %></p>
-    </div>
+    <h2><%= @question.title.capitalize %></h2>
 
     <%= link_to(@question.image_path) do %>
       <img src=<%= @question.image_path %> class="rounded">
@@ -18,8 +14,12 @@
 
     <% if @question.user.id == session[:current_user] %>
       <div class="question-menu">
-        <%= link_to 'Edit', edit_question_path(@question) %>
-        <%= link_to 'Delete Question', {action: 'destroy', id: @question.id}, method: :delete, data: {confirm: "Are you sure?"} %>
+        <%= link_to edit_question_path(@question) do %>
+          <i class="fa fa-edit"></i> Edit
+        <% end %>
+        <%= link_to question_path, method: :delete, data: {confirm: "Are you sure?" } do %>
+          <i class="fa fa-trash"></i> Delete
+        <% end %>
       </div>
     <% end %>
 

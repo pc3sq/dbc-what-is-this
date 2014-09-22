@@ -3,7 +3,6 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.string :image_path
       t.string :title
-      t.text :caption
       t.string :slug
       t.references :user, index: true
       t.references :response
