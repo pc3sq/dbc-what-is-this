@@ -1,8 +1,0 @@
-<%= form_for @response, url: question_responses_path(params[:question_id]) do |f| %>
-
-  <%= f.text_area :content, placeholder: "Content", required: true, autofocus: true %><br>
-  <%= f.submit %>
-
-<% end %>
-
-<%= link_to 'Back', :back %>

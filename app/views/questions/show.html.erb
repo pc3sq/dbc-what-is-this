@@ -25,7 +25,13 @@
 <section class="col-center col-6">
 
   <% if session[:current_user] %>
-    <%= link_to 'Create Response', new_question_response_path(@question) %>
+    <%= link_to 'Create Response', question_responses_path(@question), class: "toggle-response-form" %>
+    <div id="new_response" style="display:none">
+      <%= form_for @response, url: question_responses_path(params[:id]) do |f| %>
+        <%= f.text_area :content, placeholder: "Content", required: true, autofocus: true %><br>
+        <%= f.submit %>
+      <% end %>
+    </div>
   <% end %>
 
   <div class="responses-list">
