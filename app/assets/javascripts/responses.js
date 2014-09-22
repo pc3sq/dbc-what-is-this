@@ -1,10 +1,11 @@
 $(document).ready( function () {
+
   $(".upvote").click( function(event) {
     var responseId = $(this).data("id");
     event.preventDefault();
     $.ajax({
       url: '/response/up_vote',
-      method: 'POST',
+      type: 'POST',
       data: { id: responseId },
       dataType: 'JSON'
     }).done( function (voteCount) {
@@ -18,4 +19,23 @@ $(document).ready( function () {
         console.log(failureResponse);
     })
   })
+
+  $(document).on('click', '.mark-as-best', function(event){
+    event.preventDefault();
+    var stuff = $(this).data("id");
+    console.log('NATHAN')
+    $.ajax({
+      url: "/responses/" + stuff,
+      type: 'POST',
+      data: { id: stuff },
+      success: function(){
+        console.log('good');
+        $("div.responses-list").load(" div.responses-list");
+      },
+      failure: function(){
+        console.log('bad')
+      }
+    })
+  })
+
 })

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'questions#index'
+
   resources :sessions, only: [:create, :destroy]
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy', as: 'logout'
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
   get '/google_login' => 'oauths#new', as: 'google_login'
   get '/callback' => 'oauths#callback'
 
-  root 'questions#index'
+  resources :users, except: [:new, :index]
 
   resources :questions, shallow: true do
     resources :responses, shallow: true do
@@ -16,9 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, except: [:new, :index]
-
-
   post '/response/up_vote' => "responses#up_vote"
+  post '/responses/:id', to: 'responses#mark_as_best', as: 'mark_best_response'
 
 end
