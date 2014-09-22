@@ -9,8 +9,6 @@ class ResponsesController < ApplicationController
     if response.save
       question.responses << response
       redirect_to response.question
-    else
-      render :new
     end
   end
 

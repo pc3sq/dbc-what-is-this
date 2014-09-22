@@ -34,11 +34,19 @@
   <span><i class="fa fa-comments"></i> Comments</span>
 
   <% if session[:current_user] %>
-    <%= link_to 'Add Comment', new_response_comment_path(response) %>
-  <% end %>
+    <%= link_to 'Add Comment', response_comments_path(response), data: { response_id: response.id }, class: "toggle-comment-form"%>
+    <div id="new_comment" data-response-id=<%= response.id %> style="display:none">
+      <%= form_for @comment, url: response_comments_path(response),  remote: true do |f| %>
+        <%= f.text_area :body, placeholder: "Comment", required: true, autofocus: true %><br>
 
-  <% response.comments.each do |comment| %>
-    <%= render partial: 'comment', locals: {comment: comment} %>
+        <%= f.submit %>
+      <% end %>
+    </div>
   <% end %>
+  <div class="comment_list">
+    <% response.comments.each do |comment| %>
+      <%= render partial: 'comment', locals: {comment: comment} %>
+    <% end %>
+  </div>
 
 </div>

@@ -10,7 +10,7 @@ RSpec.describe CommentsController, :type => :controller do
     @myresponse = Response.create(content:'hello world', question_id: @question.id, user_id: @user.id)
     @comment = Comment.create(body: "my comment", response_id: @myresponse.id, user_id: @user.id)
   end
-  
+
   describe "comment test success" do
 
   	it "comments#new" do
