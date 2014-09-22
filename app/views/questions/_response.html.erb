@@ -1,44 +1,68 @@
 <div class="response <%= 'best-response' if best_response?(response) %>">
 
-  <h3><i class="fa fa-user"></i> <%= response.user.name %></h3>
+  <div class="response-header clearfix">
 
-  <div class="vote">
-    <div class="votecount">
+    <h3><%= link_to user_path(response.user) do %><%= response.user.name.capitalize %><% end %> <em>@ <%= response.created_at.strftime("%-d %b %Y, %H:%M") %></em></h3>
 
-      <% if session[:current_user] %>
-        <%= link_to '#', class: 'upvote', data: { id: response.id } do %>
-          &#65514;
+    <ul class="response-menu">
+      <% if response.question.user.id == session[:current_user] && !best_response?(response) %>
+        <li>
+          <%= link_to mark_best_response_path(response), class: 'mark-as-best', data: { id: response.id } do %>
+            <i class="fa fa-check-circle"></i> Mark as best
+          <% end %>
+        </li>
+      <% end %>
+
+      <li>
+      <% if response.user.id == session[:current_user] %>
+        <%= link_to edit_response_path(response) do %>
+          <i class="fa fa-edit"></i> Edit
         <% end %>
+      </li>
+      <li>
+        <%= link_to response, method: :delete, data: {confirm: "You sure bub?" } do %>
+          <i class="fa fa-trash"></i> Delete
+        <% end %>
+      </li>
       <% end %>
 
-      <% if response.votes.count == 1 %>
-        <span data-id="<%= response.id %>"> <%= response.votes.count %> vote</span>
-      <% else %>
-        <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
-      <% end %>
+      <li>
+        <% if session[:current_user] %>
+          <%= link_to '#', class: 'upvote', data: { id: response.id } do %>
+            <i class="fa fa-thumbs-up"></i> Vote up
+          <% end %>
+        <% end %>
+      </li>
 
-    </div>
+      <li>
+        <% if response.votes.count == 1 %>
+          <span data-id="<%= response.id %>"> <%= response.votes.count %> vote</span>
+        <% else %>
+          <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
+        <% end %>
+      </li>
+    </ul>
+
   </div>
 
-  <p><%= response.content %></p>
-
-  <% if response.user.id == session[:current_user] %>
-    <%= link_to 'Edit', edit_response_path(response) %>
-    <%= link_to 'Delete', response, method: :delete, data: {confirm: "You sure bub?" } %>
+  <% if best_response?(response) %>
+    <div class="best-response-mark">
+      <i class="fa fa-check-circle"></i> Best Answer
+    </div>
   <% end %>
 
-  <% if response.question.user.id == session[:current_user] && !best_response?(response) %>
-    <%= link_to 'Mark as best', mark_best_response_path(response), class: 'mark-as-best', data: { id: response.id } %>
-  <% end %>
-
-  <span><i class="fa fa-comments"></i> Comments</span>
+  <div class="response-content">
+    <p><%= response.content %></p>
+  </div>
 
   <% if session[:current_user] %>
-    <%= link_to 'Add Comment', response_comments_path(response), data: { response_id: response.id }, class: "toggle-comment-form"%>
+
+    <div class="create-comment">
+      <%= button_to 'Add Comment', new_response_comment_path(response), method: :get, class: "button-blue create-comment-button" %>
+    </div>
     <div id="new_comment" data-response-id=<%= response.id %> style="display:none">
       <%= form_for @comment, url: response_comments_path(response),  remote: true do |f| %>
         <%= f.text_area :body, placeholder: "Comment", required: true, autofocus: true %><br>
-
         <%= f.submit %>
       <% end %>
     </div>

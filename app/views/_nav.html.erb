@@ -1,9 +1,11 @@
 <nav class="col-12 clearfix">
 
-  <h1><%= link_to 'Was Ist Das?', root_path, class: 'page-title' %></h1>
-
   <div id="menu">
     <% if session[:current_user] %>
+      <%= link_to root_path do%>
+        <i class="fa fa-home"></i>
+        Home
+      <% end %>
       <%= link_to user_path(get_current_user) do%>
         <i class="fa fa-user"></i>
         <%= get_current_user.name %>

@@ -10,9 +10,13 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @user = User.new
     @response = Response.new
     @comment = Comment.new
+    if session[:current_user]
+      @user = @question.user
+    else
+      @user = User.new
+    end
   end
 
   def create
@@ -56,7 +60,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:image_path, :title, :caption)
+    params.require(:question).permit(:image_path, :title)
   end
 
 end

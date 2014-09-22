@@ -1,17 +1,28 @@
+.create-response {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-response-button {
+  display: inline-block;
+  border: 0;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
 .response {
   background: #fff;
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px #ccc;
 }
 
 .response h3 {
   font-size: 14px;
   margin-bottom: 10px;
-}
-
-.response p {
-  margin-bottom: 20px;
 }
 
 .response span {
@@ -23,5 +34,54 @@
 
 .best-response {
   border: 1px solid #27AE60;
-  box-shadow: 0 0 10px #27AE60;
+}
+
+.response-header {
+  margin-bottom: 10px;
+  height: 40px;
+}
+
+.response-header h3 {
+  font-size: 12px;
+  display: inline-block;
+}
+
+.response-header h3 em {
+ font-weight: 400;
+ font-style: normal;
+}
+
+.response-menu {
+  float: right;
+}
+
+.response-menu li {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.response-menu li span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.response-menu a {
+  display: inline-block;
+}
+
+.best-response-mark {
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #27AE60;
+}
+
+.response-content p {
+  font-size: 16px;
+  text-align: justify;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }

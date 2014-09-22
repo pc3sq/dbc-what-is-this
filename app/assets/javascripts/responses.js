@@ -22,12 +22,12 @@ $(document).ready( function () {
 
   $(document).on('click', '.mark-as-best', function(event){
     event.preventDefault();
-    var stuff = $(this).data("id");
+    var response_id = $(this).data("id");
     console.log('NATHAN')
     $.ajax({
-      url: "/responses/" + stuff,
+      url: "/responses/" + response_id,
       type: 'POST',
-      data: { id: stuff },
+      data: { id: response_id },
       success: function(){
         console.log('good');
         $("div.responses-list").load(" div.responses-list");

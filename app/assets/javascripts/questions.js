@@ -16,18 +16,18 @@ $(document).ready( function () {
     $('#login_modal').show();
   });
 
-  $('.new_question_button').click(function(event){
+  $('.new-question-button').click(function(event){
     event.preventDefault();
     $('#screen_block').show();
     $('#new_question_modal').show();
   });
 
-  $('.toggle-response-form').click(function(e){
+  $('input[value="Add Comment"]').click(function(e){
     e.preventDefault();
     $(this).next().slideToggle('fast');
   });
 
-  $(document).on('click', '.toggle-comment-form', function(e){
+  $(document).on('click', 'input[value="Create Response"]', function(e){
     e.preventDefault();
     var comment_form = $(this).data();
     $("#new_comment[data-response-id='"+ comment_form.responseId +"']").slideToggle('fast');
@@ -53,7 +53,7 @@ $(document).ready( function () {
   $('form#new_response').submit(function(event){
     event.preventDefault();
     $('form#new_response input[type="submit"').prop('disable', true);
-    var ajax_path = $('.toggle-response-form').attr('href');
+    var ajax_path = $('input[value="Add Comment"]').attr('href');
     $.ajax({
       url: ajax_path,
       type: 'POST',

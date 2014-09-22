@@ -3,15 +3,25 @@ header.question-header {
   margin-bottom: 40px;
 }
 
-header.question-header p {
-  text-align: left;
-  margin-bottom: 20px;
+header.question-header img {
+  box-shadow: 2px 2px 5px #ccc;
+  max-width: 400px;
 }
 
-header.question-header img {
-  box-shadow: 1px 1px 5px #777;
-  max-width: 800px;
+.question-header-info {
+  margin-bottom: 40px;
 }
+
+.question-header-info h2, .question-header-info p {
+  text-align: center;
+  margin: 0;
+}
+
+.question-menu a {
+  display: inline-block;
+  margin: 0 10px;
+}
+
 .modal{
   display: none;
   width: 30%;
@@ -23,10 +33,19 @@ header.question-header img {
   border-radius:10px;
   background-color: #ECF0F1;
 }
+
 .modal form{
   padding: 1em;
 }
+
 .modal input, textarea{
   display: block;
   width: 100%;
+}
+
+.new-question-button {
+  border: 0;
+  padding: 15px 40px;
+  border-radius: 5px;
+  font-size: 20px;
 }

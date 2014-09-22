@@ -1,43 +1,54 @@
 <%= render '/form_modals' %>
-<header class="question-header">
 
-  <p id="notice"><%= notice %></p>
+<div class="wrapper">
 
-  <h2><%= @question.title %></h2>
+  <header class="question-header clearfix col-12">
 
-  <div class="col-center col-6">
-    <p><%= @question.caption %></p>
-  </div>
+    <p id="notice"><%= notice %></p>
 
-  <%= link_to(@question.image_path) do %>
-    <img src=<%= @question.image_path %> class="rounded">
-  <% end %>
-
-  <% if @question.user.id == session[:current_user] %>
-    <div class="question-menu">
-      <%= link_to 'Edit', edit_question_path(@question) %>
-      <%= link_to 'Delete Question', {action: 'destroy', id: @question.id}, method: :delete, data: {confirm: "Are you sure?"} %>
+    <div class="question-header-info">
+      <h2><%= @question.title.capitalize %></h2>
+      <p>by <%= link_to user_path(@user) do %><%= @user.name.capitalize %><% end %></p>
     </div>
-  <% end %>
 
-</header>
+    <%= link_to(@question.image_path) do %>
+      <img src=<%= @question.image_path %> class="rounded">
+    <% end %>
 
-<section class="col-center col-6">
+    <% if @question.user.id == session[:current_user] %>
+      <div class="question-menu">
+        <%= link_to edit_question_path(@question) do %>
+          <i class="fa fa-edit"></i> Edit
+        <% end %>
+        <%= link_to question_path, method: :delete, data: {confirm: "Are you sure?" } do %>
+          <i class="fa fa-trash"></i> Delete
+        <% end %>
+      </div>
+    <% end %>
 
-  <% if session[:current_user] %>
-    <%= link_to 'Create Response', question_responses_path(@question), class: "toggle-response-form" %>
-    <div id="new_response" style="display:none">
-      <%= form_for @response, url: question_responses_path(params[:id]) do |f| %>
-        <%= f.text_area :content, placeholder: "Content", required: true, autofocus: true %><br>
-        <%= f.submit %>
+  </header>
+
+  <section class="question-content col-center col-6 clearfix">
+
+
+    <% if session[:current_user] %>
+      <div class="create-response">
+        <%= button_to 'Create Response', new_question_response_path(@question), method: :get, class: "button-blue create-response-button" %>
+        <div id="new_response" style="display:none">
+          <%= form_for @response, url: question_responses_path(params[:id]) do |f| %>
+            <%= f.text_area :content, placeholder: "Content", required: true, autofocus: true %><br>
+            <%= f.submit %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="responses-list">
+      <% @question.responses.each do |response| %>
+        <%= render partial: 'response', locals: {response: response} %>
       <% end %>
     </div>
-  <% end %>
 
-  <div class="responses-list">
-    <% @question.responses.each do |response| %>
-      <%= render partial: 'response', locals: {response: response} %>
-    <% end %>
-  </div>
+  </section>
 
-</section>
+</div>
