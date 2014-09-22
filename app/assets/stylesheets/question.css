@@ -13,6 +13,11 @@ header.question-header img {
   max-width: 400px;
 }
 
+.question-menu a {
+  display: inline-block;
+  margin: 0 10px;
+}
+
 .modal{
   display: none;
   width: 30%;
