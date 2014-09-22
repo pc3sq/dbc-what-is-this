@@ -11,8 +11,8 @@ ol.thumb-grid li {
   height: 170px;
   overflow: hidden;
   border-radius: 5px;
-  border: 1px solid #999;
-  box-shadow: 0px 0px 5px #999;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px #ccc;
 }
 
 img.thumb {
@@ -21,5 +21,6 @@ img.thumb {
 }
 
 ol.thumb-grid li:hover {
-  box-shadow: 2px 2px 5px #2C3E50;
+  border: 1px solid #999;
+  box-shadow: 2px 2px 5px #999;
 }
