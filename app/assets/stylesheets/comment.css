@@ -1,3 +1,25 @@
+.create-comment {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-comment-button {
+  display: inline-block;
+  border: 0;
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.comment {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.comment:last-child {
+  border: 0;
+}
+
 .comment h4 {
   font-size: 12px;
   margin-bottom: 5px;
@@ -5,4 +27,33 @@
 
 .comment p {
  font-size: 14px;
+}
+
+.comment-header {
+  margin-bottom: 10px;
+  height: 20px;
+  font-size: 12px;
+}
+
+.comment-header h4 {
+  display: inline-block;
+}
+
+.comment-header h4 em {
+ font-weight: 400;
+ font-style: normal;
+}
+
+.comment-menu {
+  float: right;
+  font-size: 12px;
+}
+
+.comment-menu li {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.comment-menu a {
+  display: inline-block;
 }
