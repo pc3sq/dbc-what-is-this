@@ -22,9 +22,15 @@ $(document).ready( function () {
     $('#new_question_modal').show();
   });
 
-   $('.toggle-response-form').click(function(e){
+  $('.toggle-response-form').click(function(e){
     e.preventDefault();
-    $('#new_response').slideToggle('fast');
+    $(this).next().slideToggle('fast');
+  });
+
+  $(document).on('click', '.toggle-comment-form', function(e){
+    e.preventDefault();
+    var comment_form = $(this).data();
+    $("#new_comment[data-response-id='"+ comment_form.responseId +"']").slideToggle('fast');
   });
 
   $('form#new_question').submit(function(event){
@@ -62,8 +68,26 @@ $(document).ready( function () {
         $('form#new_response input[type="submit"').prop('disable', false);
     });
   });
-
+  $(document).on('submit', "form#new_comment", function(event){
+    event.preventDefault();
+    $('form#new_comment input[type="submit"').prop('disable', true);
+    var ajax_path = $(this).attr('action');
+    $.ajax({
+      url: ajax_path,
+      type: 'POST',
+      data: $(this).serialize(),
+    }).done(function(data){
+        $('.responses-list').load(' .responses-list');
+        $('form#new_comment input[type="submit"').prop('disable', false);
+    }).fail(function(data){
+        $('form#new_comment').trigger('reset');
+        $('form#new_comment input[type="submit"').prop('disable', false);
+    });
+  });
 });
+function setHeader(xhr) {
+    xhr.setRequestHeader("Accept", "application/json");
+}
 
 function reset_question_form(){
   $('form#new_question').trigger('reset');
