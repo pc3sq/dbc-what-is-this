@@ -2,10 +2,6 @@ class ResponsesController < ApplicationController
 
   before_action :set_response, only: [:edit, :update, :destroy, :mark_as_best]
 
-  def new
-    @response = Response.new
-  end
-
   def create
     question = Question.find(params[:question_id])
     response = Response.new(content: response_params[:content], user_id: session[:current_user])

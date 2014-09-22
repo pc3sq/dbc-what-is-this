@@ -24,7 +24,7 @@ $(document).ready( function () {
 
    $('.toggle-response-form').click(function(e){
     e.preventDefault();
-    $('#new_response').toggle();
+    $('#new_response').slideToggle('fast');
   });
 
   $('form#new_question').submit(function(event){
@@ -54,7 +54,7 @@ $(document).ready( function () {
       data: $('form#new_response').serialize(),
     }).done(function(data){
         $('.responses-list').load(' .responses-list');
-        $('#new_response').toggle();
+        $('#new_response').slideToggle('fast');
         $('form#new_response').trigger('reset');
         $('form#new_response input[type="submit"').prop('disable', false);
     }).fail(function(data){
