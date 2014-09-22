@@ -16,7 +16,7 @@ $(document).ready( function () {
     $('#login_modal').show();
   });
 
-  $('.new_question_button').click(function(event){
+  $('.new-question-button').click(function(event){
     event.preventDefault();
     $('#screen_block').show();
     $('#new_question_modal').show();
