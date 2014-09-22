@@ -1,6 +1,6 @@
 $(document).ready( function () {
 
-  $(".upvote").click( function(event) {
+  $(document).on('click', ".upvote", function(event) {
     var responseId = $(this).data("id");
     event.preventDefault();
     $.ajax({
@@ -17,13 +17,12 @@ $(document).ready( function () {
     }).fail( function (failureResponse) {
         alert("You already voted for this response.");
         console.log(failureResponse);
-    })
-  })
+    });
+  });
 
   $(document).on('click', '.mark-as-best', function(event){
     event.preventDefault();
     var response_id = $(this).data("id");
-    console.log('NATHAN')
     $.ajax({
       url: "/responses/" + response_id,
       type: 'POST',
@@ -33,9 +32,8 @@ $(document).ready( function () {
         $("div.responses-list").load(" div.responses-list");
       },
       failure: function(){
-        console.log('bad')
       }
-    })
-  })
+    });
+  });
 
-})
+});
