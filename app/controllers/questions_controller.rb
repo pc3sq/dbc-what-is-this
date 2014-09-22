@@ -10,6 +10,8 @@ class QuestionsController < ApplicationController
 
   def show
     @user = User.new
+    @response = Response.new
+    @comment = Comment.new
   end
 
   def create

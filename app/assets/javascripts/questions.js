@@ -21,6 +21,12 @@ $(document).ready( function () {
     $('#screen_block').show();
     $('#new_question_modal').show();
   });
+
+   $('.toggle-response-form').click(function(e){
+    e.preventDefault();
+    $('#new_response').toggle();
+  });
+
   $('form#new_question').submit(function(event){
     event.preventDefault();
     $('form#new_question input[type="submit"').prop('disable', true);
@@ -37,6 +43,26 @@ $(document).ready( function () {
         reset_question_form();
     });
   });
+//
+  $('form#new_response').submit(function(event){
+    event.preventDefault();
+    $('form#new_response input[type="submit"').prop('disable', true);
+    var ajax_path = $('.toggle-response-form').attr('href');
+    $.ajax({
+      url: ajax_path,
+      type: 'POST',
+      data: $('form#new_response').serialize(),
+    }).done(function(data){
+        $('.responses-list').load(' .responses-list');
+        $('#new_response').toggle();
+        $('form#new_response').trigger('reset');
+        $('form#new_response input[type="submit"').prop('disable', false);
+    }).fail(function(data){
+        $('form#new_response').trigger('reset');
+        $('form#new_response input[type="submit"').prop('disable', false);
+    });
+  });
+
 });
 
 function reset_question_form(){
