@@ -57,7 +57,7 @@
 
   <% if session[:current_user] %>
     <div class="create-comment">
-      <%= button_to 'Add Comment', new_response_comment_path(response), { class: "button-blue create-comment-button" } %>
+      <%= button_to 'Add Comment', response_comments_path(response), { class: "button-blue create-comment-button" } %>
     </div>
   <% end %>
 

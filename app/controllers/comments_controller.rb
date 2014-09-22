@@ -35,7 +35,6 @@ class CommentsController < ApplicationController
     redirect_to response.question
   end
 
-
   private
 
   def set_comment
