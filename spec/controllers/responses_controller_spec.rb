@@ -18,11 +18,6 @@ RSpec.describe ResponsesController, :type => :controller do
         expect(response).to redirect_to("/questions/#{@myresponse.question.id}")
       end
 
-      it "doesn't create a response when params are invalid" do
-        post :create, question_id: @question, response: {content: '', user_id: @user.id}
-        expect(response).to render_template(:new)
-      end
-
     end
 
     context "#update" do

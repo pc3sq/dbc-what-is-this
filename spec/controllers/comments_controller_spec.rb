@@ -21,21 +21,17 @@ RSpec.describe CommentsController, :type => :controller do
     context "#create" do
     	it "creates a comment with valid params" do
         expect{
-          post :create, response_id: @myresponse, comment: { body: "what is it", user_id: @user_id } 
-          }.to change{Comment.count}.by(1)
+          post :create, response_id: @myresponse, comment: { body: "what is it", user_id: @user_id }
+          }.to change(Comment, :count).by(1)
       end
     end
 
     context "comments#create" do
 
-    	it "creates a comment with valid params" do
-        post :create, {response_id: @myresponse, comment: {body: "what is it"} }
-        expect(response).to redirect_to("/questions/#{Comment.last.response.question.id}")
-    	end
-
       it "does not create a comment when params are invalid" do
-      	post :create, response_id: @myresponse, comment: {body: nil, user_id: @user_id} 
-        expect(response).to render_template(:new)
+      	expect{
+          post :create, response_id: @myresponse, comment: { body: nil, user_id: @user_id }
+          }.to change(Comment, :count).by(0)
       end
     end
 
