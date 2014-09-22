@@ -36,12 +36,17 @@ ul, ol {
   margin-left: 0;
 }
 
+.profile-header {
+  text-align: center;
+}
+
 footer {
   text-align: center;
   font-size: 10px;
   color: #333;
   margin: 100px 0 40px 0;
 }
+
 #screen_block{
   position:fixed;
   top:0;

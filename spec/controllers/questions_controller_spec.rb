@@ -10,7 +10,7 @@ RSpec.describe QuestionsController, :type => :controller do
     end
 
     it "show" do
-      @question = Question.create(title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif')
+      @question = Question.create(title:'hello world', image_path:'http://i.imgur.com/cDakD23.gif')
       get :show, id: @question.id
       expect(response).to render_template(:show)
     end
@@ -21,33 +21,33 @@ RSpec.describe QuestionsController, :type => :controller do
         session[:current_user] = user.id
       end
       it "creates a question with valid params" do
-        post :create, question: {title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif'}
+        post :create, question: {title:'hello world', image_path:'http://i.imgur.com/cDakD23.gif'}
         expect(response).to redirect_to("/questions/#{Question.last.id}")
       end
       it "doesn't create a question when params are invalid" do
-        post :create, question: {title: '', caption: "world?"}
+        post :create, question: {title: ''}
         expect(response).to render_template(:index)
       end
     end
 
     context "#update" do
       before(:each) do
-        @question = Question.create({ title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif' })
+        @question = Question.create({ title:'hello world', image_path:'http://i.imgur.com/cDakD23.gif' })
       end
 
       it "updates a question with valid params" do
-        put :update, id: @question, question: {title: 'hello', caption: "world?", image_path:'http://i.imgur.com/cDakD23.gif'  }
+        put :update, id: @question, question: {title: 'hello', image_path:'http://i.imgur.com/cDakD23.gif'  }
         expect(response).to redirect_to("/questions/#{@question.id}")
       end
       it "doesn't update a question when params are invalid" do
-        put :update, id: @question, question: {title: '', caption: '', image_path:'' }
+        put :update, id: @question, question: {title: '', image_path:'' }
         expect(response).to render_template(:edit)
       end
     end
 
     context "#destroy" do
       before(:each) do
-        @question = Question.create({ title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif' })
+        @question = Question.create({ title:'hello world', image_path:'http://i.imgur.com/cDakD23.gif' })
       end
 
       it "should delete the question" do

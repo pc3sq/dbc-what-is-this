@@ -1,8 +1,9 @@
 <%= render '/form_modals' %>
+
 <header class="page-header col-12">
 
   <% if session[:current_user] %>
-  <%= button_to "Create New Question", {method: :get}, { class: "new_question_button" }%>
+    <%= button_to "Add Question", {method: :get}, { class: "button-blue new-question-button" } %>
   <% end %>
 
 </header>
