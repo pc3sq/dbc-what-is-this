@@ -11,21 +11,11 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe "response panel success" do
 
-    it "#new" do
-      get :new, question_id: 1
-      expect(assigns(:response)).to be_a Response
-    end
-
     context "#create" do
 
       it "creates a response with valid params" do
         post :create, question_id: @question, response: { content:'hello world', user_id: @user.id }
         expect(response).to redirect_to("/questions/#{@myresponse.question.id}")
-      end
-
-      it "doesn't create a response when params are invalid" do
-        post :create, question_id: @question, response: {content: '', user_id: @user.id}
-        expect(response).to render_template(:new)
       end
 
     end

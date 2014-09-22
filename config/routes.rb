@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :index]
 
   resources :questions, shallow: true do
-    resources :responses, shallow: true do
+    resources :responses, shallow: true, except: :new do
       resources :comments
     end
   end

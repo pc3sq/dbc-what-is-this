@@ -9,13 +9,12 @@ class CommentsController < ApplicationController
   def create
     response = Response.find(params[:response_id])
     comment = Comment.new(body: comment_params[:body], user_id: session[:current_user])
-
+    puts params
     if comment.save
       response.comments << comment
-      redirect_to response.question
-    else
-      render :new
     end
+
+    redirect_to "/questions/#{response.question.id}"
   end
 
   def edit
@@ -36,13 +35,12 @@ class CommentsController < ApplicationController
   end
 
   private
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
 
   def set_comment
     @comment = Comment.find(params[:id])
-  end
-
-  def comment_params
-    params.require(:comment).permit(:body)
   end
 
 end

@@ -30,9 +30,16 @@
 
   <section class="question-content col-center col-6 clearfix">
 
+
     <% if session[:current_user] %>
       <div class="create-response">
-        <%= button_to 'Create Response', new_question_response_path(@question), method: :get, class: "button-blue create-response-button" %>
+        <%= button_to 'Create Response', question_path(@question), method: :get, class: "button-blue create-response-button", id: 'response_button'%>
+        <div id="new_response" style="display:none">
+          <%= form_for @response, url: question_responses_path(params[:id]) do |f| %>
+            <%= f.text_area :content, placeholder: "Content", required: true, autofocus: true %><br>
+            <%= f.submit %>
+          <% end %>
+        </div>
       </div>
     <% end %>
 

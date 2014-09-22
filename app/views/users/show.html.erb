@@ -1,9 +1,10 @@
 <div class="profile-header">
 
   <h2><%= @user.name.capitalize %>'s questions</h2>
-
-  <%= link_to edit_user_path(@user) do %>
-    Edit User Info
+  <% if session[:current_user] == @user.id %>
+    <%= link_to edit_user_path(@user) do %>
+      Edit User Info
+    <% end %>
   <% end %>
 
 </div>
