@@ -6,6 +6,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.text :caption
       t.string :slug
       t.references :user, index: true
+      t.references :response
 
       t.timestamps
     end
