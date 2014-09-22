@@ -1,24 +1,34 @@
 <div class="response <%= 'best-response' if best_response?(response) %>">
 
   <h3><i class="fa fa-user"></i> <%= response.user.name %></h3>
+
   <div class="vote">
     <div class="votecount">
-      <a data-id="<%= response.id %>" class="upvote">&#65514;</a>
+
+      <% if session[:current_user] %>
+        <%= link_to '#', class: 'upvote', data: { id: response.id } do %>
+          &#65514;
+        <% end %>
+      <% end %>
+
       <% if response.votes.count == 1 %>
         <span data-id="<%= response.id %>"> <%= response.votes.count %> vote</span>
       <% else %>
         <span data-id="<%= response.id %>"> <%= response.votes.count %> votes</span>
       <% end %>
+
     </div>
   </div>
+
   <p><%= response.content %></p>
 
   <% if response.user.id == session[:current_user] %>
     <%= link_to 'Edit', edit_response_path(response) %>
     <%= link_to 'Delete', response, method: :delete, data: {confirm: "You sure bub?" } %>
-    <% if !best_response?(response) %>
-      <%= link_to 'Mark as best', mark_best_response_path(response), class: 'mark-as-best', data: { id: response.id } %>
-    <% end %>
+  <% end %>
+
+  <% if response.question.user.id == session[:current_user] && !best_response?(response) %>
+    <%= link_to 'Mark as best', mark_best_response_path(response), class: 'mark-as-best', data: { id: response.id } %>
   <% end %>
 
   <span><i class="fa fa-comments"></i> Comments</span>
