@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @user = User.new
+    @user = @question.user
   end
 
   def create
