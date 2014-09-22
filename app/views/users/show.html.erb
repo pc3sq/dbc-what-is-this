@@ -1,5 +1,7 @@
 <h2><%= @user.name %>'s questions</h2>
-
+<%= link_to edit_user_path(@user) do %>
+  Edit User Info
+<% end %>
 <div class="col-12">
   <ol class="thumb-grid group clearfix">
 
