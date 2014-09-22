@@ -4,11 +4,24 @@
 
   <div id="menu">
     <% if session[:current_user] %>
-      <%= link_to logout_path, method: :delete do %><i class="fa fa-sign-out"></i> Logout<% end %>
+      <%= link_to user_path(get_current_user) do%>
+        <i class="fa fa-user"></i>
+        <%= get_current_user.name %>
+      <% end %>
+      <%= link_to logout_path, method: :delete do %>
+        <i class="fa fa-sign-out"></i> Logout
+      <% end %>
+
     <% else %>
-      <%= link_to '#', id: "signup" do %><i class="fa fa-edit"></i> Signup<% end %>
-      <%= link_to '#', id: "login" do %><i class="fa fa-sign-in"></i> Login<% end %>
-      <%= link_to google_login_path, class: 'google' do %><i class="fa fa-google"></i> Sign in with Google<% end %>
+      <%= link_to '#', id: "signup" do %>
+        <i class="fa fa-edit"></i> Signup
+      <% end %>
+      <%= link_to '#', id: "login" do %>
+        <i class="fa fa-sign-in"></i> Login
+      <% end %>
+      <%= link_to google_login_path, class: 'google' do %>
+      <i class="fa fa-google"></i> Sign in with Google
+      <% end %>
     <% end %>
   </div>
 
