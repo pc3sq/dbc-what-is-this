@@ -84,10 +84,13 @@ $(document).ready( function () {
         $('form#new_comment input[type="submit"').prop('disable', false);
     });
   });
+  // $(document).on('click', '.delete-response', function(e){
+  //   e.preventDefault();
+  //   var response_id = $(this).data();
+  //   console.log(response_id)
+  // });
 });
-function setHeader(xhr) {
-    xhr.setRequestHeader("Accept", "application/json");
-}
+
 
 function reset_question_form(){
   $('form#new_question').trigger('reset');

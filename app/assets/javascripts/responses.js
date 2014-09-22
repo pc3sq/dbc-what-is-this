@@ -8,7 +8,7 @@ $(document).ready( function () {
       type: 'POST',
       data: { id: responseId },
       success: function () {
-        $("div.votes-count").load("/ div.votes-count");
+        $('.responses-list').load(' .responses-list');
       },
       failure: function () {
         alert("You already voted for this response.");
