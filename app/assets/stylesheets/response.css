@@ -3,6 +3,8 @@
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px #ccc;
 }
 
 .response h3 {
@@ -23,5 +25,15 @@
 
 .best-response {
   border: 1px solid #27AE60;
-  box-shadow: 0 0 10px #27AE60;
 }
+
+.best-response-icon {
+  position: relative;
+  text-align: center;
+}
+
+.best-response-icon i {
+  font-size: 40px;
+  color: #27AE60;
+}
+

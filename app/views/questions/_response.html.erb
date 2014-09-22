@@ -3,6 +3,13 @@
   <h3><i class="fa fa-user"></i> <%= response.user.name %></h3>
 
   <div class="vote">
+
+  <% if best_response?(response) %>
+    <div class="best-response-icon">
+      <i class="fa fa-check-circle"></i>
+    </div>
+  <% end %>
+
     <div class="votecount">
 
       <% if session[:current_user] %>
