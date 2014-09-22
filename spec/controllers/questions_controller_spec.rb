@@ -9,6 +9,12 @@ RSpec.describe QuestionsController, :type => :controller do
       expect(assigns(:questions)).to eq Question.all.order('created_at DESC')
     end
 
+    it "show" do
+      @question = Question.create(title:'hello world', caption:'hello', image_path:'http://i.imgur.com/cDakD23.gif')
+      get :show, id: @question.id
+      expect(response).to render_template(:show)
+    end
+
     context "#create" do
       before(:each) do
         user = User.create(name: "test", email: "test@test.com", password:"test", password_confirmation:"test")

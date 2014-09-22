@@ -19,7 +19,7 @@ RSpec.describe UsersController, :type => :controller do
     it "show" do
       @user = User.create({ name: "test", email: "test@test.com", password:'test', password_confirmation:'test' })
       get :show, id: @user.id
-      expect(assigns(:questions)).to eq(@user.questions)
+      expect(assigns(:user)).to eq(@user)
     end
 
     context "#update" do
