@@ -3,7 +3,7 @@
 <header class="page-header col-12">
 
   <% if session[:current_user] %>
-    <%= button_to "Add Question", {method: :get}, { class: "button-blue new-question-button" } %>
+    <%= button_to "Add Question", new_question_path, method: :get, class: "button-blue new-question-button" %>
   <% end %>
 
 </header>
