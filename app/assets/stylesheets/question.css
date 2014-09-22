@@ -3,14 +3,18 @@ header.question-header {
   margin-bottom: 40px;
 }
 
-header.question-header p {
-  text-align: left;
-  margin-bottom: 20px;
+header.question-header img {
+  box-shadow: 2px 2px 5px #ccc;
+  max-width: 400px;
 }
 
-header.question-header img {
-  box-shadow: 1px 1px 5px #777;
-  max-width: 400px;
+.question-header-info {
+  margin-bottom: 40px;
+}
+
+.question-header-info h2, .question-header-info p {
+  text-align: center;
+  margin: 0;
 }
 
 .question-menu a {
