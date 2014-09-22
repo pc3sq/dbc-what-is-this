@@ -6,7 +6,10 @@
 
     <p id="notice"><%= notice %></p>
 
-    <h2><%= @question.title.capitalize %></h2>
+    <div class="question-header-info">
+      <h2><%= @question.title.capitalize %></h2>
+      <p>by <%= link_to user_path(@user) do %><%= @user.name.capitalize %><% end %></p>
+    </div>
 
     <%= link_to(@question.image_path) do %>
       <img src=<%= @question.image_path %> class="rounded">
@@ -28,7 +31,9 @@
   <section class="question-content col-center col-6 clearfix">
 
     <% if session[:current_user] %>
-      <%= link_to 'Create Response', new_question_response_path(@question) %>
+      <div class="create-response">
+        <%= button_to 'Create Response', new_question_response_path(@question), method: :get, class: "button-blue create-response-button" %>
+      </div>
     <% end %>
 
     <div class="responses-list">
