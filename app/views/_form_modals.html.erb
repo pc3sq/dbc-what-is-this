@@ -1,5 +1,6 @@
 <% if session[:current_user] %>
   <p id="notice"><%= notice %></p>
+
   <div id='new_question_modal' class='modal'>
     <%= render 'questions/form' %>
   </div>
