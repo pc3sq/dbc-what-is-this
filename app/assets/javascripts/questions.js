@@ -22,12 +22,12 @@ $(document).ready( function () {
     $('#new_question_modal').show();
   });
 
-  $('input[value="Add Comment"]').click(function(e){
+  $('#response_button').click(function(e){
     e.preventDefault();
-    $(this).next().slideToggle('fast');
+    $('#new_response').slideToggle('fast');
   });
 
-  $(document).on('click', 'input[value="Create Response"]', function(e){
+  $(document).on('click', 'input.button-blue.create-comment-button', function(e){
     e.preventDefault();
     var comment_form = $(this).data();
     $("#new_comment[data-response-id='"+ comment_form.responseId +"']").slideToggle('fast');
@@ -49,11 +49,11 @@ $(document).ready( function () {
         reset_question_form();
     });
   });
-//
+
   $('form#new_response').submit(function(event){
     event.preventDefault();
     $('form#new_response input[type="submit"').prop('disable', true);
-    var ajax_path = $('input[value="Add Comment"]').attr('href');
+    var ajax_path = window.location.pathname + '/responses';
     $.ajax({
       url: ajax_path,
       type: 'POST',

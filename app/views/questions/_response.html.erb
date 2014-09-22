@@ -58,7 +58,7 @@
   <% if session[:current_user] %>
 
     <div class="create-comment">
-      <%= button_to 'Add Comment', new_response_comment_path(response), method: :get, class: "button-blue create-comment-button" %>
+      <%= button_to 'Add Comment', new_response_comment_path(response), method: :get, class: "button-blue create-comment-button", data: {response_id: response.id} %>
     </div>
     <div id="new_comment" data-response-id=<%= response.id %> style="display:none">
       <%= form_for @comment, url: response_comments_path(response),  remote: true do |f| %>
